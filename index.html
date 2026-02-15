@@ -94,6 +94,16 @@
       background: var(--paper);
       overflow: hidden;
       box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: pageIn 560ms ease-out forwards;
+    }
+
+    @keyframes pageIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .top {
@@ -153,6 +163,18 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
+    }
+
+    .hire-punchline {
+      margin: 0.68rem 0 0;
+      font-size: 0.9rem;
+      color: #33515d;
+      font-weight: 600;
+      max-width: 62ch;
+    }
+
+    .hire-punchline strong {
+      color: var(--brand);
     }
 
     .btn {
@@ -317,7 +339,24 @@
       background: #fff;
       content-visibility: auto;
       contain-intrinsic-size: 700px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: sectionIn 500ms ease-out forwards;
     }
+
+    @keyframes sectionIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #impact { animation-delay: 120ms; }
+    #works { animation-delay: 170ms; }
+    #cases { animation-delay: 220ms; }
+    #projects { animation-delay: 270ms; }
+    #demo { animation-delay: 320ms; }
+    #contact { animation-delay: 370ms; }
 
     .section.red-bg {
       background: linear-gradient(180deg, #f7fbfd 0%, #f2f8fa 100%);
@@ -568,6 +607,7 @@
           <a class="btn track-click" data-icon="GH" data-click="github" href="https://github.com/rupam13" target="_blank" rel="noreferrer">GitHub</a>
           <a class="btn hire-btn track-click" data-icon="HM" data-click="hire_me_mail" href="mailto:rupam13@hotmail.com">Hire Me</a>
         </div>
+        <p class="hire-punchline"><strong>Why hire me:</strong> I automate operations, improve SLA performance, and deliver measurable business outcomes.</p>
       </div>
 
       <aside class="side-card tilt-card">
