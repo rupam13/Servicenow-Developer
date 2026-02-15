@@ -678,58 +678,11 @@
 
     .core-fill {
       margin-top: 0.32rem;
-      font-size: 0.76rem;
+      font-size: 0.84rem;
       color: #3e7070;
-      font-weight: 700;
+      font-weight: 800;
       position: relative;
       z-index: 4;
-    }
-
-    .orbit-picks {
-      position: absolute;
-      inset: 24% 8% 8% 8%;
-      overflow: hidden;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .skill-blob {
-      position: absolute;
-      width: 84px;
-      min-height: 30px;
-      padding: 0.2rem 0.28rem;
-      border: 1px solid rgba(47, 157, 137, 0.42);
-      border-radius: 50% 45% 55% 50%;
-      background: rgba(92, 201, 183, 0.32);
-      box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.28);
-      font-size: 0.53rem;
-      font-weight: 700;
-      line-height: 1.1;
-      text-align: center;
-      color: #1d6b5d;
-      display: grid;
-      place-items: center;
-      animation: blobBounce var(--dur, 3.2s) ease-in-out var(--delay, 0s) infinite;
-      opacity: 0.9;
-    }
-
-    @keyframes blobBounce {
-      0%, 100% {
-        transform: translate(0, 0) scale(1);
-        border-radius: 50% 45% 55% 50%;
-      }
-      25% {
-        transform: translate(var(--dx, 6px), calc(var(--dy, 5px) * -1)) scale(1.04, 0.96);
-        border-radius: 42% 58% 49% 51%;
-      }
-      50% {
-        transform: translate(calc(var(--dx, 6px) * -0.7), var(--dy, 5px)) scale(0.97, 1.03);
-        border-radius: 55% 43% 57% 45%;
-      }
-      75% {
-        transform: translate(calc(var(--dx, 6px) * 0.35), calc(var(--dy, 5px) * -0.4)) scale(1.02);
-        border-radius: 47% 53% 45% 55%;
-      }
     }
 
     .skill-controls {
@@ -1153,7 +1106,6 @@
             <div class="core-water" id="coreWater"></div>
             <p class="core-title">ServiceNow Developer</p>
             <p class="core-fill" id="coreFill">Readiness: 0%</p>
-            <div class="orbit-picks" id="orbitPicks"></div>
           </div>
         </div>
         <div class="skill-controls">
@@ -1419,57 +1371,37 @@
     });
 
     const skillButtons = Array.from(document.querySelectorAll('.skill-btn'));
-    const orbitPicks = document.getElementById('orbitPicks');
     const coreFill = document.getElementById('coreFill');
     const coreWater = document.getElementById('coreWater');
     const pipeLines = Array.from(document.querySelectorAll('.pipe-line'));
     const pipeBubbles = Array.from(document.querySelectorAll('.pipe-bubble'));
     const picked = new Set();
-    const maxSkills = skillButtons.length;
-    let skillCarouselIndex = 0;
-    let skillCarouselTimer = null;
-    let skillList = [];
+    let readinessStarted = false;
 
-    function renderSkillCarousel() {
-      orbitPicks.innerHTML = '';
-      if (!skillList.length) return;
-      const slots = [
-        { left: '3%', top: '6%' },
-        { left: '52%', top: '7%' },
-        { left: '4%', top: '57%' },
-        { left: '51%', top: '58%' }
-      ];
-      const visibleCount = Math.min(4, skillList.length);
-      for (let i = 0; i < visibleCount; i += 1) {
-        const name = skillList[(skillCarouselIndex + i) % skillList.length];
-        const blob = document.createElement('span');
-        blob.className = 'skill-blob';
-        blob.textContent = name;
-        blob.title = name;
-        blob.style.left = slots[i].left;
-        blob.style.top = slots[i].top;
-        blob.style.setProperty('--dx', `${i % 2 === 0 ? 6 : -6}px`);
-        blob.style.setProperty('--dy', `${i < 2 ? 5 : -5}px`);
-        blob.style.setProperty('--dur', `${2.7 + i * 0.22}s`);
-        blob.style.setProperty('--delay', `${i * 0.14}s`);
-        orbitPicks.appendChild(blob);
-      }
+    function animateReadiness(targetPct, durationMs) {
+      const start = performance.now();
+      const from = 0;
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / durationMs);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = Math.round(from + (targetPct - from) * eased);
+        coreFill.textContent = `Readiness: ${value}%`;
+        coreWater.style.height = `${value}%`;
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          coreFill.textContent = `Readiness: ${targetPct}%`;
+          coreWater.style.height = `${targetPct}%`;
+        }
+      };
+      requestAnimationFrame(step);
     }
 
     function renderOrbitFill() {
-      skillList = Array.from(picked);
-      skillCarouselIndex = 0;
-      renderSkillCarousel();
-      if (skillCarouselTimer) clearInterval(skillCarouselTimer);
-      if (skillList.length > 4) {
-        skillCarouselTimer = setInterval(() => {
-          skillCarouselIndex = (skillCarouselIndex + 4) % skillList.length;
-          renderSkillCarousel();
-        }, 2500);
+      if (!readinessStarted) {
+        animateReadiness(100, 2800);
+        readinessStarted = true;
       }
-      const pct = Math.round((picked.size / maxSkills) * 100);
-      coreFill.textContent = `Readiness: ${pct}%`;
-      coreWater.style.height = `${pct}%`;
 
       const sourceCount = {
         banking: 0,
