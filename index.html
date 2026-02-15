@@ -3,537 +3,439 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rupam Wadibhasme | ServiceNow Transition Portfolio</title>
-  <meta name="description" content="Rupam Wadibhasme - Senior Analyst and automation specialist preparing for ServiceNow developer opportunities." />
+  <title>Rupam Wadibhasme | Portfolio</title>
+  <meta name="description" content="Rupam Wadibhasme - platform and automation specialist transitioning into ServiceNow-focused roles." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f3f0e9;
-      --paper: #fffef9;
-      --ink: #141414;
-      --muted: #4d4a45;
-      --line: #d4cfc1;
-      --accent: #1f7a52;
-      --accent-soft: #e7f2ec;
-      --block: #111111;
-      --block-ink: #f4f4f2;
-      --radius: 18px;
-      --shadow: 0 22px 42px rgba(20, 20, 20, 0.08);
+      --dark: #0f0f0f;
+      --light: #f2f2f2;
+      --red: #bd0a0a;
+      --red-soft: #2b1111;
+      --muted: #c4c4c4;
+      --line: #2a2a2a;
+      --radius: 16px;
     }
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: radial-gradient(circle at 92% 2%, #f5ecd8 0, transparent 24%), var(--bg);
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: var(--dark);
+      color: var(--light);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .shell {
-      width: min(1140px, calc(100% - 1rem));
-      margin: 0.8rem auto 2rem;
+    .noise::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 1px, transparent 1px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 3px 3px, 4px 4px;
+      opacity: 0.22;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 1rem));
+      margin: 0.7rem auto 1.4rem;
       border: 1px solid var(--line);
       border-radius: 22px;
       overflow: hidden;
-      background: var(--paper);
-      box-shadow: var(--shadow);
+      background: #121212;
     }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.72rem 1rem;
-      border-bottom: 1px solid var(--line);
-      background: #f9f5ea;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-family: "Space Grotesk", sans-serif;
+    .menu-btn {
+      position: fixed;
+      right: 1.1rem;
+      top: 1rem;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--red);
+      color: var(--light);
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      font-size: 0.92rem;
+      box-shadow: 0 0 0 0 rgba(189,10,10,0.5);
+      animation: pulse 2.8s infinite;
+      cursor: pointer;
+      z-index: 25;
     }
 
-    .dot {
-      width: 0.78rem;
-      height: 0.78rem;
-      border-radius: 999px;
-      background: linear-gradient(130deg, #1f7a52, #8bc8aa);
-      box-shadow: 0 0 0 4px #dbeadf;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(189,10,10,0.5); }
+      100% { box-shadow: 0 0 0 18px rgba(189,10,10,0); }
     }
 
-    .nav {
-      display: flex;
-      gap: 0.34rem;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      text-decoration: none;
-      border: 1px solid #cec8ba;
-      border-radius: 999px;
-      padding: 0.2rem 0.58rem;
-      color: #3f3a34;
-      font-size: 0.78rem;
-      background: #fffaf1;
-    }
-
-    .hero {
-      padding: 1.25rem 1rem;
+    .top {
+      padding: 1rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(165deg, #161616 0%, #101010 100%);
+      min-height: 78vh;
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
       gap: 1rem;
-      border-bottom: 1px solid var(--line);
+      align-items: center;
     }
 
-    .label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #23593f;
-      background: var(--accent-soft);
-      border: 1px solid #c3dfd0;
-      border-radius: 999px;
-      padding: 0.2rem 0.58rem;
-    }
-
-    h1 {
-      margin: 0.7rem 0 0;
-      line-height: 1.1;
-      font-size: clamp(1.9rem, 6vw, 3.4rem);
+    .intro h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      font-weight: 800;
       letter-spacing: -0.03em;
-      max-width: 18ch;
-      font-family: "Space Grotesk", sans-serif;
     }
 
-    .lead {
-      margin: 0.75rem 0 1rem;
+    .outline {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--light);
+      text-transform: uppercase;
+    }
+
+    .red { color: var(--red); }
+
+    .intro p {
+      margin: 0.7rem 0 0;
+      max-width: 64ch;
       color: var(--muted);
-      max-width: 65ch;
     }
 
-    .ctas {
+    .chips {
+      margin-top: 1rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.42rem;
+    }
+
+    .chips span {
+      font-size: 0.78rem;
+      border: 1px solid #343434;
+      border-radius: 999px;
+      padding: 0.17rem 0.55rem;
+      background: #151515;
+    }
+
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.48rem;
+      flex-wrap: wrap;
     }
 
     .btn {
       text-decoration: none;
+      color: var(--light);
+      border: 1px solid #3a3a3a;
+      padding: 0.4rem 0.75rem;
       border-radius: 999px;
-      padding: 0.34rem 0.76rem;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 0.82rem;
-      border: 1px solid #1d5b3e;
-      color: #133726;
-      background: #dff1e7;
+      background: #161616;
+      transition: 0.2s ease;
     }
 
-    .btn.alt {
-      border-color: #c9c2b2;
-      color: #3e3b34;
-      background: #fff8ec;
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: var(--red);
+      border-color: #d32121;
     }
 
-    .meta {
-      border: 1px solid var(--line);
+    .side-card {
+      border: 1px solid #2f2f2f;
       border-radius: var(--radius);
-      background: #fffcf5;
-      padding: 0.85rem;
-      align-self: start;
+      padding: 0.9rem;
+      background: #141414;
     }
 
-    .meta h2 {
+    .side-card h2 {
       margin: 0 0 0.6rem;
-      font-size: 0.83rem;
+      font-size: 0.88rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #4a453d;
+      letter-spacing: 0.09em;
+      color: #e0e0e0;
     }
 
-    .meta-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 0.42rem;
-      font-size: 0.88rem;
-    }
+    .meta { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9rem; }
+    .meta a { color: #f2d6d6; text-decoration: none; }
 
-    .meta-list a { color: #215f41; text-decoration: none; }
-
-    .belt {
+    .section {
+      padding: 1rem;
       border-bottom: 1px solid var(--line);
-      background: #151515;
-      color: #ecece9;
-      overflow: hidden;
-      white-space: nowrap;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.88rem;
-      letter-spacing: 0.02em;
     }
 
-    .belt span {
+    .section.red-bg {
+      background: linear-gradient(180deg, #1a0f0f 0%, #160c0c 100%);
+    }
+
+    .title {
+      margin: 0 0 0.25rem;
+      font-family: "Roboto Slab", serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      margin: 0 0 0.8rem;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 0.95rem;
+    }
+
+    .works {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.62rem;
+    }
+
+    .work {
+      border: 1px solid #333;
+      border-radius: 14px;
+      background: #121212;
+      padding: 0.7rem;
+      transition: 0.22s ease;
+      cursor: pointer;
+    }
+
+    .work:hover {
+      transform: translateY(-2px);
+      border-color: #5c1d1d;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+    }
+
+    .work h3 { margin: 0; font-size: 0.98rem; }
+    .work p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.86rem; }
+
+    .kicker {
       display: inline-block;
-      padding: 0.46rem 0;
-      animation: ticker 24s linear infinite;
+      margin-top: 0.45rem;
+      font-size: 0.73rem;
+      color: #ffd2d2;
+      border: 1px solid #5f2a2a;
+      border-radius: 999px;
+      padding: 0.14rem 0.45rem;
     }
 
-    @keyframes ticker {
+    .project-list {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--light);
+      border: 1px solid #3a1d1d;
+      background: #150f0f;
+      border-radius: 12px;
+      padding: 0.58rem 0.65rem;
+    }
+
+    .project-item strong { font-size: 0.95rem; }
+    .project-item span { font-size: 0.78rem; color: #ebb4b4; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .box {
+      border: 1px solid #2f2f2f;
+      border-radius: 14px;
+      background: #141414;
+      padding: 0.7rem;
+    }
+
+    .box h4 { margin: 0 0 0.45rem; font-size: 0.95rem; }
+    .box p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #0b0b0b;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 0.84rem;
+      font-family: "Roboto Slab", serif;
+    }
+
+    .ticker div {
+      display: inline-block;
+      padding: 0.42rem 0;
+      color: #dfdfdf;
+      animation: run 20s linear infinite;
+    }
+
+    @keyframes run {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    .content {
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 0.8rem;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 0.9rem;
-      background: #fffdf6;
-    }
-
-    .card h3 {
-      margin: 0 0 0.6rem;
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: -0.01em;
-      font-size: 1rem;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.36rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .tag-row li {
-      border: 1px solid #cfc7b7;
-      border-radius: 999px;
-      padding: 0.16rem 0.52rem;
-      font-size: 0.78rem;
-      background: #f8f1e4;
-      color: #463f34;
-    }
-
-    .exp {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .exp li {
-      border: 1px solid #d6cebe;
-      border-radius: 12px;
-      padding: 0.65rem;
-      background: #fffbf2;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .exp li.show {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 380ms ease;
-    }
-
-    .exp-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.45rem;
-      align-items: baseline;
-      flex-wrap: wrap;
-    }
-
-    .role { margin: 0; font-weight: 800; font-size: 0.93rem; }
-    .org { margin: 0.12rem 0 0.34rem; color: #565048; font-size: 0.86rem; }
-
-    .date {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 0.74rem;
-      border-radius: 999px;
-      background: #deefe6;
-      color: #1f5d40;
-      padding: 0.16rem 0.5rem;
-      border: 1px solid #badac9;
-      font-weight: 700;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.36rem;
-      margin-bottom: 0.58rem;
-    }
-
-    .filters button {
-      border: 1px solid #cbc4b5;
-      background: #fff8ea;
-      border-radius: 999px;
-      padding: 0.2rem 0.56rem;
-      font-size: 0.75rem;
-      cursor: pointer;
-      color: #443f37;
-    }
-
-    .filters button.active {
-      background: #1f7a52;
-      color: #f7fff9;
-      border-color: #1f7a52;
-    }
-
-    .projects {
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .project {
-      border: 1px solid #d5ccbc;
-      border-radius: 14px;
-      background: #111111;
-      color: #f2f2ef;
-      padding: 0.72rem;
-      transition: transform 180ms ease;
-    }
-
-    .project:hover { transform: translateY(-2px); }
-
-    .project h4 {
-      margin: 0;
-      font-size: 0.93rem;
-      letter-spacing: -0.01em;
-    }
-
-    .project p {
-      margin: 0.32rem 0 0;
-      color: #d0d0ca;
-      font-size: 0.83rem;
-    }
-
-    .project span {
-      display: inline-block;
-      margin-top: 0.48rem;
-      font-size: 0.72rem;
-      border: 1px solid #3e3e3e;
-      border-radius: 999px;
-      padding: 0.12rem 0.42rem;
-      color: #d8d8d2;
-    }
-
     footer {
-      border-top: 1px solid var(--line);
-      padding: 0.72rem 1rem 1rem;
+      padding: 0.72rem 1rem 0.95rem;
+      font-size: 0.78rem;
+      color: #9c9c9c;
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 0.4rem;
-      font-size: 0.76rem;
-      color: #625b50;
-      background: #faf6ea;
+      flex-wrap: wrap;
+      background: #101010;
     }
 
-    @media (max-width: 930px) {
-      .hero, .content { grid-template-columns: 1fr; }
+    .nav-panel {
+      position: fixed;
+      right: 1rem;
+      top: 4.9rem;
+      background: #1a0f0f;
+      border: 1px solid #522020;
+      border-radius: 12px;
+      padding: 0.4rem;
+      display: none;
+      z-index: 30;
     }
 
-    @media (max-width: 640px) {
-      .shell { width: calc(100% - 0.5rem); margin-top: 0.35rem; }
-      .topbar, .hero, .content, footer { padding-left: 0.72rem; padding-right: 0.72rem; }
-      h1 { max-width: none; }
-      .nav { display: none; }
+    .nav-panel.open { display: grid; gap: 0.28rem; }
+
+    .nav-panel a {
+      text-decoration: none;
+      color: #ffdada;
+      font-size: 0.8rem;
+      border: 1px solid #5b2e2e;
+      border-radius: 999px;
+      padding: 0.22rem 0.52rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .top, .contact-grid, .works { grid-template-columns: 1fr; }
+      .project-item { grid-template-columns: 1fr; }
+      .menu-btn { width: 50px; height: 50px; right: 0.65rem; }
+      .nav-panel { right: 0.65rem; }
     }
   </style>
 </head>
-<body>
-  <main class="shell">
-    <div class="topbar">
-      <div class="brand"><span class="dot"></span> Rupam Portfolio</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+<body class="noise">
+  <button class="menu-btn" id="menuBtn" aria-label="Open quick nav">+MENU</button>
+  <nav class="nav-panel" id="navPanel">
+    <a href="#top">Intro</a>
+    <a href="#works">Works</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <section class="hero" id="about">
-      <div>
-        <span class="label">Available For ServiceNow-Focused Roles</span>
-        <h1>Senior analyst and automation builder moving into ServiceNow development.</h1>
-        <p class="lead">I bring platform workflow experience, incident-process understanding, strong SLA discipline, and automation delivery background. This portfolio highlights why I can contribute quickly in ServiceNow implementation and support teams.</p>
-        <div class="ctas">
-          <a class="btn" href="./Profile%20(1).pdf">Download Resume</a>
-          <a class="btn alt" href="https://www.linkedin.com/in/rupam-wadibhasme-82832912a/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn alt" href="https://github.com/rupam13" target="_blank" rel="noreferrer">GitHub</a>
+  <main class="wrap">
+    <section class="top" id="top">
+      <div class="intro">
+        <h1><span class="outline">Just a</span><br><span class="red">service operations + automation builder</span></h1>
+        <p>Nice that you found me. I work on platform workflows, process improvement, and automation systems. I am now positioning for ServiceNow-focused opportunities while showcasing real delivery experience.</p>
+        <div class="chips">
+          <span>Service Operations</span><span>Workflow Logic</span><span>SLA and KPI</span><span>OCR and APIs</span><span>Python</span><span>SQL</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="./Profile%20(1).pdf">Download Resume</a>
+          <a class="btn" href="https://www.linkedin.com/in/rupam-wadibhasme-82832912a/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="https://github.com/rupam13" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
-
-      <aside class="meta" id="contact">
-        <h2>Quick Info</h2>
-        <ul class="meta-list">
+      <aside class="side-card">
+        <h2>Quick Facts</h2>
+        <ul class="meta">
           <li><strong>Name:</strong> Rupam Wadibhasme</li>
+          <li><strong>Current:</strong> Senior Analyst, Magnit Global</li>
+          <li><strong>Previous:</strong> E42.ai, Axis Bank, HDFC Bank</li>
           <li><strong>Email:</strong> <a href="mailto:rupam13@hotmail.com">rupam13@hotmail.com</a></li>
           <li><strong>Phone:</strong> +91 8857851277</li>
-          <li><strong>Location:</strong> India</li>
-          <li><strong>Focus:</strong> Process improvement, platform operations, automation</li>
         </ul>
       </aside>
     </section>
 
-    <div class="belt"><span>Service operations • workflow automation • incident handling • platform improvement • API integrations • analytics dashboards • Service operations • workflow automation • incident handling • platform improvement • API integrations • analytics dashboards • </span></div>
+    <div class="ticker"><div>Selected works • Own projects • Platform solutions • Workflow automation • Process controls • Incident flows • API integrations • Selected works • Own projects • Platform solutions • Workflow automation • </div></div>
 
-    <section class="content" id="work">
-      <article class="card" id="experience">
-        <h3>Experience</h3>
-        <div class="filters" aria-label="Filter experience">
-          <button class="active" data-filter="all">All</button>
-          <button data-filter="platform">Platform</button>
-          <button data-filter="automation">Automation</button>
-          <button data-filter="operations">Operations</button>
+    <section class="section" id="works">
+      <h2 class="title">Selected <span class="red">works</span></h2>
+      <p class="subtitle">A snapshot of experience blocks that map well to platform and service operations work.</p>
+      <div class="works">
+        <article class="work">
+          <h3>Senior Analyst - Process Improvement and Platform Solutions</h3>
+          <p>Magnit Global | Mar 2025 - Present. Workflow logic improvements, service issue RCA, KPI and SLA trend tracking.</p>
+          <span class="kicker">Platform Focus</span>
+        </article>
+        <article class="work">
+          <h3>Lead AI Specialist</h3>
+          <p>E42.ai | Jan 2023 - Mar 2025. Enterprise automation delivery with OCR, APIs, and process orchestration.</p>
+          <span class="kicker">Automation Delivery</span>
+        </article>
+        <article class="work">
+          <h3>AI Agent Specialist</h3>
+          <p>E42.ai | Jan 2022 - Mar 2025. Intelligent workflow implementation to improve throughput and quality.</p>
+          <span class="kicker">Workflow Build</span>
+        </article>
+        <article class="work">
+          <h3>Assistant Manager - Operations and Process Controls</h3>
+          <p>Axis Bank and HDFC Bank | 2018 - 2020. High-volume operations, escalations, controls, and audit-ready records.</p>
+          <span class="kicker">Operations Control</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section red-bg" id="projects">
+      <h2 class="title">Own <span class="outline">projects</span></h2>
+      <p class="subtitle">Since business delivery comes first, these are focused practical build examples.</p>
+      <div class="project-list">
+        <a class="project-item" href="#projects"><strong>Platform Workflow Uplift</strong><span>forms + flows + scripted rules</span></a>
+        <a class="project-item" href="#projects"><strong>OCR + API Automation Delivery</strong><span>document extraction + integration</span></a>
+        <a class="project-item" href="#projects"><strong>KPI and SLA Monitoring</strong><span>dashboard + service trend analysis</span></a>
+        <a class="project-item" href="#projects"><strong>Escalation Controls in Banking</strong><span>incident-like request handling</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2 class="title">Get in <span class="red">touch</span></h2>
+      <p class="subtitle">For questions, opportunities, or collaboration, a message is enough.</p>
+      <div class="contact-grid">
+        <div class="box">
+          <h4>What I can help with</h4>
+          <p>Workflow automation, service-process optimization, reporting and KPI visibility, API integration use cases, and platform operations improvement.</p>
         </div>
-        <ul class="exp">
-          <li class="show" data-type="platform">
-            <div class="exp-head">
-              <p class="role">Senior Analyst - Process Improvement and Platform Solutions</p>
-              <span class="date">Mar 2025 - Present</span>
-            </div>
-            <p class="org">Magnit Global</p>
-            <ul>
-              <li>Enhanced platform workflows and scripted logic for faster turnaround.</li>
-              <li>Performed RCA on recurring service issues and delivered fixes.</li>
-              <li>Tracked SLA and KPI trends for continuous improvement.</li>
-            </ul>
-          </li>
-          <li class="show" data-type="automation">
-            <div class="exp-head">
-              <p class="role">Lead AI Specialist</p>
-              <span class="date">Jan 2023 - Mar 2025</span>
-            </div>
-            <p class="org">E42.ai</p>
-            <ul>
-              <li>Led OCR/API workflow delivery for enterprise clients.</li>
-              <li>Converted business requirements into automation solutions.</li>
-            </ul>
-          </li>
-          <li class="show" data-type="automation">
-            <div class="exp-head">
-              <p class="role">AI Agent Specialist</p>
-              <span class="date">Jan 2022 - Mar 2025</span>
-            </div>
-            <p class="org">E42.ai</p>
-            <ul>
-              <li>Built intelligent workflows to improve quality and efficiency.</li>
-              <li>Integrated services and process orchestration for operations.</li>
-            </ul>
-          </li>
-          <li class="show" data-type="operations">
-            <div class="exp-head">
-              <p class="role">Assistant Manager - Operations and Process Controls</p>
-              <span class="date">2018 - 2020</span>
-            </div>
-            <p class="org">Axis Bank and HDFC Bank</p>
-            <ul>
-              <li>Handled high-volume requests and escalation workflows.</li>
-              <li>Maintained control standards and audit-ready records.</li>
-            </ul>
-          </li>
-        </ul>
-      </article>
-
-      <aside class="card">
-        <h3>Core Capabilities</h3>
-        <ul class="tag-row">
-          <li>ITSM Concepts</li>
-          <li>Incident Flows</li>
-          <li>Request Management</li>
-          <li>SLA / KPI Tracking</li>
-          <li>Workflow Automation</li>
-          <li>Python</li>
-          <li>SQL</li>
-          <li>Power BI</li>
-          <li>API Integrations</li>
-          <li>Process Governance</li>
-        </ul>
-
-        <h3 style="margin-top:0.85rem;">Selected Work</h3>
-        <div class="projects">
-          <div class="project">
-            <h4>Platform Workflow Uplift</h4>
-            <p>Improved process cycle time by refining workflow logic and operational controls.</p>
-            <span>Magnit Global</span>
-          </div>
-          <div class="project">
-            <h4>OCR + API Automation Delivery</h4>
-            <p>Delivered automation modules for document and process-heavy business use cases.</p>
-            <span>E42.ai</span>
-          </div>
-          <div class="project">
-            <h4>Escalation and Control Handling</h4>
-            <p>Managed incident-like requests with SLA focus in regulated banking operations.</p>
-            <span>Axis / HDFC</span>
-          </div>
+        <div class="box">
+          <h4>Contact</h4>
+          <p><a href="mailto:rupam13@hotmail.com" style="color:#ffcdcd;text-decoration:none;">rupam13@hotmail.com</a><br/>+91 8857851277<br/>India</p>
         </div>
-      </aside>
+      </div>
     </section>
 
     <footer>
       <span>Last updated: February 15, 2026</span>
-      <span>Designed as a recruiter-facing transition portfolio</span>
+      <span>Reference-inspired dark/red portfolio style</span>
     </footer>
   </main>
 
   <script>
-    const filterButtons = document.querySelectorAll('.filters button');
-    const items = document.querySelectorAll('.exp li');
+    const menuBtn = document.getElementById('menuBtn');
+    const navPanel = document.getElementById('navPanel');
 
-    filterButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const type = btn.dataset.filter;
-        filterButtons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        items.forEach((item) => {
-          const show = type === 'all' || item.dataset.type === type;
-          item.style.display = show ? 'block' : 'none';
-        });
-      });
+    menuBtn.addEventListener('click', () => {
+      navPanel.classList.toggle('open');
     });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    items.forEach((item) => observer.observe(item));
+    navPanel.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => navPanel.classList.remove('open'));
+    });
   </script>
 </body>
 </html>
