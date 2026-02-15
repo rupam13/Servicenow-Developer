@@ -525,25 +525,37 @@
 
     .orbit-picks {
       margin-top: 0.45rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      justify-content: center;
-      max-height: 82px;
-      overflow: auto;
-      padding-right: 0.25rem;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid #cbe4df;
+      border-radius: 999px;
+      background: rgba(242, 252, 248, 0.92);
+      padding: 0.15rem 0.3rem;
       position: relative;
       z-index: 2;
+    }
+
+    .orbit-picks-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      min-width: max-content;
+      animation: skillMarquee 26s linear infinite;
     }
 
     .orbit-picks span {
       border: 1px solid #b9ddd5;
       border-radius: 999px;
       padding: 0.12rem 0.42rem;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: #1d6b5d;
       background: #f2fcf8;
       white-space: nowrap;
+    }
+
+    @keyframes skillMarquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     .skill-controls {
@@ -585,6 +597,11 @@
       background: #e9f8f4;
       color: #1a6b5c;
       font-weight: 700;
+    }
+
+    .skill-btn:disabled {
+      opacity: 1;
+      cursor: default;
     }
 
     @keyframes spin {
@@ -925,7 +942,7 @@
 
     <section class="section" id="orbit">
       <h2 class="title">Skill <span class="red">Orbit Mapping</span></h2>
-      <p class="subtitle">Click skills from four sources to pour experience into the ServiceNow Developer core and visualize transition readiness.</p>
+      <p class="subtitle">All mapped skills are already connected and flowing into the ServiceNow Developer core to show full transition readiness.</p>
       <div class="orbit-grid">
         <div class="orbit-wrap tilt-card">
           <svg class="pipe-layer" viewBox="0 0 420 420" aria-hidden="true">
@@ -1180,15 +1197,19 @@
     const pipeLines = Array.from(document.querySelectorAll('.pipe-line'));
     const pipeBubbles = Array.from(document.querySelectorAll('.pipe-bubble'));
     const picked = new Set();
-    const maxSkills = 16;
+    const maxSkills = skillButtons.length;
 
     function renderOrbitFill() {
       orbitPicks.innerHTML = '';
-      Array.from(picked).forEach((name) => {
+      const track = document.createElement('div');
+      track.className = 'orbit-picks-track';
+      const names = Array.from(picked);
+      names.concat(names).forEach((name) => {
         const pill = document.createElement('span');
         pill.textContent = name;
-        orbitPicks.appendChild(pill);
+        track.appendChild(pill);
       });
+      orbitPicks.appendChild(track);
       const pct = Math.round((picked.size / maxSkills) * 100);
       coreFill.textContent = `Readiness: ${pct}%`;
       coreWater.style.height = `${pct}%`;
@@ -1215,18 +1236,10 @@
     }
 
     skillButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const skill = btn.getAttribute('data-skill');
-        if (picked.has(skill)) {
-          picked.delete(skill);
-          btn.classList.remove('used');
-        } else {
-          if (picked.size >= maxSkills) return;
-          picked.add(skill);
-          btn.classList.add('used');
-        }
-        renderOrbitFill();
-      });
+      const skill = btn.getAttribute('data-skill');
+      picked.add(skill);
+      btn.classList.add('used');
+      btn.disabled = true;
     });
 
     renderOrbitFill();
